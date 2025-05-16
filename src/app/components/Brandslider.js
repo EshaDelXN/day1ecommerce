@@ -13,9 +13,10 @@ const brands = [
 export default function BrandSlider() {
   return (
     <section className="my-10">
-      <h3 className="text-xl font-semibold mb-4">
-        Top <span className="text-blue-500">Electronics Brands</span>
-      </h3>
+      <h3 className="text-xl font-semibold mb-4 text-blue-500 text-center">
+      Top Electronics Brands
+       </h3>
+
       <div className="flex gap-6 overflow-x-auto scrollbar-thin pb-2">
         {brands.map((brand) => (
           <div

@@ -28,31 +28,39 @@ export default function EssentialsSlider() {
 
   return (
     <section className="my-10 relative">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-2xl font-bold text-gray-800">
-          Daily <span className="text-blue-600">Essentials</span>
-        </h3>
-        <div className="flex space-x-2">
-          <button 
-            onClick={() => scroll('left')}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
-            aria-label="Scroll left"
-          >
-            <FaChevronLeft />
-          </button>
-          <button 
-            onClick={() => scroll('right')}
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
-            aria-label="Scroll right"
-          >
-            <FaChevronRight />
-          </button>
-        </div>
-      </div>
+  {/* Heading centered */}
+  <div className="mb-1">
+    <h3 className="text-xl font-bold text-blue-600 text-center">
+      Daily Essentials
+    </h3>
+  </div>
+
+  {/* Scroll buttons aligned right */}
+  <div className="flex justify-end mb-1">
+    <div className="flex space-x-2">
+      <button 
+        onClick={() => scroll('left')}
+        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
+        aria-label="Scroll left"
+      >
+        <FaChevronLeft />
+      </button>
+      <button 
+        onClick={() => scroll('right')}
+        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
+        aria-label="Scroll right"
+      >
+        <FaChevronRight />
+      </button>
+    </div>
+  </div>
+
 
       <div 
-        ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+      ref={scrollRef}
+      className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+
+
       >
         {essentials.map((item) => (
           <div
