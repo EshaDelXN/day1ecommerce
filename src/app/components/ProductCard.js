@@ -1,13 +1,19 @@
-// src/components/ProductCard.js
 import Image from "next/image";
 
 export default function ProductCard({ title, price, save, image }) {
   return (
-    <div className="bg-white rounded shadow p-4 text-center">
-      <Image src={image} alt={title} width={100} height={100} className="mx-auto" />
-      <h4 className="mt-2 font-semibold">{title}</h4>
-      <p>{price}</p>
-      <p className="text-green-600">{save}</p>
+    <div className="bg-white rounded-xl shadow-md p-4 text-center hover:shadow-lg transition min-h-[250px]">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-contain"
+        />
+      </div>
+      <h4 className="mt-3 font-semibold text-sm sm:text-base">{title}</h4>
+      <p className="text-sm sm:text-base">{price}</p>
+      <p className="text-green-600 text-xs sm:text-sm">{save}</p>
     </div>
   );
 }

@@ -1,85 +1,62 @@
 "use client";
-
-import Image from "next/image";
 import { useRef } from "react";
+import Image       from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const essentials = [
-  { name: "Daily Essentials", image: "/images/dailyessentials.jfif", offer: "UP TO 50% OFF" },
-  { name: "Vegetables", image: "/images/vegetables.webp", offer: "UP TO 50% OFF" },
-  { name: "Fruits", image: "/images/fruits.pjpeg", offer: "UP TO 50% OFF" },
-  { name: "Snacks", image: "/images/snacks.jpg", offer: "UP TO 50% OFF" },
-  { name: "Juices", image: "/images/juices.jpg", offer: "UP TO 50% OFF" },
-  { name: "Appliances", image: "/images/appliances.jfif", offer: "UP TO 50% OFF" },
-  { name: "Dairy", image: "/images/dairy.jpg", offer: "UP TO 40% OFF" },
-  { name: "Bakery", image: "/images/bakery.webp", offer: "UP TO 30% OFF" },
+  { name:"Daily Essentials", image:"/images/dailyessentials.jfif" },
+  { name:"Vegetables",       image:"/images/vegetables.webp"     },
+  { name:"Fruits",           image:"/images/fruits.pjpeg"        },
+  { name:"Snacks",           image:"/images/snacks.jpg"          },
+  { name:"Juices",           image:"/images/juices.jpg"          },
+  { name:"Appliances",       image:"/images/appliances.jfif"     },
+  { name:"Dairy",            image:"/images/dairy.jpg"           },
+  { name:"Bakery",           image:"/images/bakery.webp"         },
 ];
 
 export default function EssentialsSlider() {
-  const scrollRef = useRef(null);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { current } = scrollRef;
-      const scrollAmount = direction === 'left' ? -300 : 300;
-      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  const ref = useRef(null);
+  const scroll = dir => ref.current?.scrollBy({ left: dir==='left'?-260:260, behavior:"smooth" });
 
   return (
-    <section className="my-10 relative">
-  {/* Heading centered */}
-  <div className="mb-1">
-    <h3 className="text-xl font-bold text-blue-600 text-center">
-      Daily Essentials
-    </h3>
+    <section className="my-10">
+      <div className="flex items-center justify-between mb-1 px-1">
+  {/* Empty div to take left space */}
+  <div className="w-6 sm:w-12" />
+  
+  {/* Centered text */}
+  <h3 className="text-xl font-bold text-blue-600 text-center flex-1">
+    Daily Essentials
+  </h3>
+
+  {/* Buttons on the right */}
+  <div className="space-x-1 hidden sm:flex">
+    <button
+      onClick={() => scroll("left")}
+      className="p-2 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200"
+    >
+      <FaChevronLeft />
+    </button>
+    <button
+      onClick={() => scroll("right")}
+      className="p-2 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200"
+    >
+      <FaChevronRight />
+    </button>
   </div>
-
-  {/* Scroll buttons aligned right */}
-  <div className="flex justify-end mb-1">
-    <div className="flex space-x-2">
-      <button 
-        onClick={() => scroll('left')}
-        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
-        aria-label="Scroll left"
-      >
-        <FaChevronLeft />
-      </button>
-      <button 
-        onClick={() => scroll('right')}
-        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700"
-        aria-label="Scroll right"
-      >
-        <FaChevronRight />
-      </button>
-    </div>
-  </div>
+</div>
 
 
-      <div 
-      ref={scrollRef}
-      className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
-
-
-      >
-        {essentials.map((item) => (
-          <div
-            key={item.name}
-            className="min-w-[160px] flex-shrink-0 bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col items-center justify-center cursor-pointer transition-all hover:shadow-md hover:border-blue-200 snap-start"
-          >
-            <div className="relative w-20 h-20 mb-4 rounded-full overflow-hidden border-4 border-white shadow-inner">
-              <Image
-                src={item.image}
-                alt={item.name}
-                layout="fill"
-                objectFit="cover"
-                className="bg-white p-1"
-              />
+      <div ref={ref} className="flex gap-4 overflow-x-auto scroll-snap-x snap-mandatory pb-1">
+        {essentials.map(item=>(
+          <div key={item.name}
+               className="snap-start flex-shrink-0 min-w-[120px] sm:min-w-[140px] bg-white rounded-xl border
+                          p-4 flex flex-col items-center hover:shadow-md transition">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-2 rounded-full overflow-hidden">
+              <Image src={item.image} alt={item.name} fill className="object-cover"/>
             </div>
-            <p className="font-bold text-gray-800 text-center">{item.name}</p>
-            <span className="text-sm font-medium text-green-600 mt-1 bg-green-50 px-2 py-1 rounded-full">
-              {item.offer}
-            </span>
+            <p className="text-center text-[13px] sm:text-sm font-semibold">{item.name}</p>
+            <span className="text-[11px] sm:text-xs text-green-600 font-medium">UP TO 50% OFF</span>
           </div>
         ))}
       </div>

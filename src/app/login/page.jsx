@@ -1,6 +1,7 @@
 "use client";
 
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -11,10 +12,12 @@ export default function LoginPage() {
         </h1>
 
         <form className="space-y-6">
-          {/* Email Input */}
           <div className="relative">
+            <label htmlFor="email" className="sr-only">Email Address</label>
             <FaEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400" />
             <input
+              id="email"
+              name="email"
               type="email"
               placeholder="Email Address"
               className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 
@@ -24,10 +27,12 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Password Input */}
           <div className="relative">
+            <label htmlFor="password" className="sr-only">Password</label>
             <FaLock className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400" />
             <input
+              id="password"
+              name="password"
               type="password"
               placeholder="Password"
               className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 
@@ -37,7 +42,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-blue-400 
@@ -50,9 +54,9 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-blue-600 hover:underline">
+          <Link href="/signup" className="text-blue-600 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

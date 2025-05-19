@@ -1,40 +1,44 @@
+"use client";
 import Image from "next/image";
 
 const brands = [
-  { name: "Apple", image: "/images/apple.jfif", offer: "UP TO 80% OFF" },
-  { name: "Realme", image: "/images/realme.jpg", offer: "UP TO 80% OFF" },
-  { name: "Poco", image: "/images/poco.jfif", offer: "UP TO 80% OFF" },
-  { name: "Mi", image: "/images/mi.png", offer: "UP TO 80% OFF" },
-  { name: "Samsung", image: "/images/samsung.jpg", offer: "UP TO 80% OFF" },
-  { name: "oneplus", image: "/images/oneplus.png", offer: "UP TO 80% OFF" },
-  { name: "vivo", image: "/images/vivo.webp", offer: "UP TO 80% OFF" },
+  { name: "Apple",   image: "/images/apple.jfif"   },
+  { name: "Realme",  image: "/images/realme.jpg"   },
+  { name: "Poco",    image: "/images/poco.jfif"    },
+  { name: "Mi",      image: "/images/mi.png"       },
+  { name: "Samsung", image: "/images/samsung.jpg"  },
+  { name: "OnePlus", image: "/images/oneplus.png"  },
+  { name: "Vivo",    image: "/images/vivo.webp"    },
 ];
 
 export default function BrandSlider() {
   return (
-    <section className="my-10">
-      <h3 className="text-xl font-semibold mb-4 text-blue-500 text-center">
-      Top Electronics Brands
-       </h3>
+    <section className="my-10 px-4 sm:px-0">
+      <h3 className="text-xl font-bold text-blue-600 text-center mb-4">
+        Top Electronics Brands
+      </h3>
 
-      <div className="flex gap-6 overflow-x-auto scrollbar-thin pb-2">
-        {brands.map((brand) => (
+      <div className="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-400
+                      scroll-snap-x snap-mandatory pb-2">
+        {brands.map((b) => (
           <div
-            key={brand.name}
-            className="min-w-[160px] bg-white rounded-xl shadow-md border border-gray-200 p-4 flex flex-col items-center justify-center cursor-pointer transition-transform hover:scale-105"
-            role="button"
-            tabIndex={0}
-          >
-            <div className="relative w-20 h-20 mb-3 rounded-full overflow-hidden">
+            key={b.name}
+            className="snap-start flex-shrink-0 min-w-[100px] sm:min-w-[140px] lg:min-w-[170px]
+                       bg-white rounded-xl shadow-md border border-gray-200
+                       p-3 sm:p-4 flex flex-col items-center hover:shadow-lg transition">
+            <div className="relative w-14 h-14 sm:w-20 sm:h-20 mb-2 rounded-full overflow-hidden">
               <Image
-                src={brand.image}
-                alt={brand.name}
-                layout="fill"
-                objectFit="cover"
+                src={b.image}
+                alt={b.name}
+                fill
+                sizes="(max-width: 640px) 56px, (max-width: 1024px) 80px, 96px"
+                className="object-cover"
               />
             </div>
-            <p className="font-bold text-center">{brand.name}</p>
-            <span className="text-sm text-yellow-600">{brand.offer}</span>
+            <p className="font-semibold text-sm sm:text-base text-center">{b.name}</p>
+            <span className="text-[11px] sm:text-xs text-yellow-600 font-medium mt-1">
+              UP TO 80% OFF
+            </span>
           </div>
         ))}
       </div>
